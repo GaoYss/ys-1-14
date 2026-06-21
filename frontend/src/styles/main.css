@@ -276,9 +276,15 @@ th {
 }
 
 .badge.neutral,
-.badge.draft {
+.badge.draft,
+.badge.secondary {
   background: #e9edf0;
   color: #4f5a61;
+}
+
+.badge.info {
+  background: #dbeafe;
+  color: #1d4ed8;
 }
 
 .error-text {

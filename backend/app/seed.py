@@ -1,7 +1,16 @@
 from datetime import date
 
 from .extensions import db
-from .models import Ingredient, PurchaseOrder, PurchaseOrderItem, StockRecord, Supplier
+from .models import (
+    Ingredient,
+    PurchaseOrder,
+    PurchaseOrderItem,
+    SOURCE_TYPE_INVENTORY_CHECK,
+    SOURCE_TYPE_PURCHASE,
+    SOURCE_TYPE_STORE_REQUISITION,
+    StockRecord,
+    Supplier,
+)
 
 
 def seed_data():
@@ -107,7 +116,8 @@ def seed_data():
                 record_type="in",
                 quantity=40,
                 operator="王店长",
-                source="采购入库",
+                source="甜蜜乳品配送/PO20260615003",
+                source_type=SOURCE_TYPE_PURCHASE,
                 note="每日乳品补货",
             ),
             StockRecord(
@@ -115,8 +125,18 @@ def seed_data():
                 record_type="out",
                 quantity=6,
                 operator="李班长",
-                source="门店领用",
+                source="西湖文化广场店",
+                source_type=SOURCE_TYPE_STORE_REQUISITION,
                 note="晚班备料",
+            ),
+            StockRecord(
+                ingredient_id=ingredients[0].id,
+                record_type="out",
+                quantity=2,
+                operator="张仓管",
+                source="盘点单号 PD20260620",
+                source_type=SOURCE_TYPE_INVENTORY_CHECK,
+                note="月末盘点损耗调整",
             ),
         ]
     )
